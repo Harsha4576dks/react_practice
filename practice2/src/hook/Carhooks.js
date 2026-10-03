@@ -29,12 +29,7 @@ export function useCars(){
 
     function update(id, name){
         updatedVehicle(id, name);
-        setVehicle(prevCars =>
-            prevCars.map(car =>
-                car.id === id ? {...car, name}:car
-            )
-        );
-
+        setVehicle(fetchVehicle());
     }
     return {cars, add, remove, search, update, searchTerm, setSearchTerm, seacrhedVehicle}
 }

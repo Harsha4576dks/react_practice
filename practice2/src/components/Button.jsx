@@ -76,7 +76,7 @@ export default function CarsList(){
             value={editName}
             onChange={e => setEditName(e.target.value)}
            />
-            <button onClick={() => handleUpdate(cars.id)}>update car</button>
+            <button onClick={() => handleUpdate(deletedId)}>update car</button>
 
 
          {/*DELETE CARS*/}
