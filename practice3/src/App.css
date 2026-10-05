@@ -1,0 +1,76 @@
+
+div[style*="max-width"] {
+  background: #5c1a1a;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 8px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #444444;
+}
+
+form {
+  background-color: #fafafa;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+form button[type="submit"] {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+
+li {
+  transition: background-color 0.15s ease;
+}
+
+li:hover {
+  background-color: #f8fafc;
+}
+
+
+div[style*="backgroundColor"] {
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+}
