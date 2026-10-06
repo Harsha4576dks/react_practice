@@ -1,10 +1,15 @@
 import React from 'react';
 import { useContacts } from './hook/ContactHooks';
+import Navbar from './components/Navbar';
 import AddContactForm from './components/AddContactForm';
 import EditContactForm from './components/EditContactForm';
 import ContactList from './components/ContactList';
+import Button from './components/button';
+import { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [activePage, setActivePage] = useState('get');
   const {
     contacts,
     editingContact,
@@ -15,42 +20,89 @@ function App() {
     handleDelete,
   } = useContacts();
 
-  return (
-    <div style={{ padding: '20px', maxWidth: '500px', fontFamily: 'sans-serif' }}>
-      <h2>Contact Manager</h2>
+
+  const handleStartEdit = (contact) => {
+    setEditingContact(contact);
+    setActivePage('update');
+  };
+
+return (
+    <div className="app-layout">
+      <Navbar activePage={activePage} setActivePage={setActivePage} />
+
+      <main className="content-container">
+        <h2>Contact Management</h2>
 
 
-      {status.message && (
-        <div
-          style={{
-            padding: '10px',
-            marginBottom: '15px',
-            color: 'white',
-            backgroundColor: status.type === 'error' ? '#dc3545' : '#28a745',
-            borderRadius: '4px',
-          }}
-        >
-          {status.message}
-        </div>
-      )}
+        {status.message && (
+          <div className={`status-banner ${status.type}`}>
+            {status.message}
+          </div>
+        )}
 
 
-      {editingContact ? (
-        <EditContactForm
-          currentContact={editingContact}
-          onUpdate={handleUpdate}
-          onCancel={() => setEditingContact(null)}
-        />
-      ) : (
-        <AddContactForm onAdd={handleAdd} />
-      )}
+        {activePage === 'get' && (
+          <div className="page-view">
+            <h3>All Contacts (Read View)</h3>
+            <ContactList
+              contacts={contacts}
+              onDelete={handleDelete}
+              onStartEdit={handleStartEdit}
+            />
+          </div>
+        )}
 
-      <h3>Contact List</h3>
-      <ContactList
-        contacts={contacts}
-        onDelete={handleDelete}
-        onStartEdit={(contact) => setEditingContact(contact)}
-      />
+
+        {activePage === 'add' && (
+          <div className="page-view">
+            <AddContactForm
+              onAdd={(data) => {
+                handleAdd(data);
+                setActivePage('get'); 
+              }}
+            />
+          </div>
+        )}
+
+
+        {activePage === 'update' && (
+          <div className="page-view">
+            {editingContact ? (
+              <EditContactForm
+                currentContact={editingContact}
+                onUpdate={(id, data) => {
+                  handleUpdate(id, data);
+                  setActivePage('get'); 
+                }}
+                onCancel={() => {
+                  setEditingContact(null);
+                  setActivePage('get');
+                }}
+              />
+            ) : (
+              <div>
+                <p>No contact selected for editing.</p>
+                <Button onClick={() => setActivePage('get')}>
+                  Select Contact from List
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+
+
+        {activePage === 'delete' && (
+          <div className="page-view">
+            <h3>Delete Contacts View</h3>
+            <p>Click Delete next to any contact below:</p>
+            <ContactList
+              contacts={contacts}
+              onDelete={handleDelete}
+              onStartEdit={handleStartEdit}
+            />
+          </div>
+        )}
+      </main>
     </div>
   );
 }
