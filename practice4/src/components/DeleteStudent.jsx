@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react';
 import Button from './button';
+import { deleteStudent } from "../services/studentService";
 
 
-function StudentList({students, onDelete, onStartEdit}){
+function StudentList({students = [], onDelete, onStartEdit}){
     if (students.length === 0) return <p>No students found</p>;
 
     return (
@@ -14,7 +15,7 @@ function StudentList({students, onDelete, onStartEdit}){
             display: 'flex',
             justify: 'space-between',
             padding: '8px 0',
-            borderBottom: '1px solid #ddd',
+            borderBottom: '1px solid #1e293b',
           }}
         >
           <span>
@@ -38,3 +39,5 @@ function StudentList({students, onDelete, onStartEdit}){
     );
 
 }
+
+export default StudentList;

@@ -8,6 +8,7 @@ function AddStudent({onAdd}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!name || !phone) return;
         onAdd({name, phone});
         setName('');
         setPhone('');

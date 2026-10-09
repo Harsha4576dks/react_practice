@@ -29,6 +29,10 @@ export function useStudents(){
 
 
     const handleAdd = async (studentData) => {
+        if (!studentData.name || !studentData.phone) {
+            notify("error", "Name and phone are required.");
+            return;
+        }
         try{
             await addStudent(studentData);
             await fetchStudents();
