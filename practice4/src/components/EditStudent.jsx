@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Button from "./button";
 
+
 function EditStudent({currentStudent, onUpdate, onCancel}){
     const [name, setName] = useState('');
     const[phone, setPhone] = useState('');
@@ -18,6 +19,7 @@ function EditStudent({currentStudent, onUpdate, onCancel}){
         onUpdate(currentStudent.id, {name, phone});
     };
 
+    
      return (
     <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
       <h3>Edit student</h3>
