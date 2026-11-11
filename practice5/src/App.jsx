@@ -1,76 +1,83 @@
 import { useState } from "react";
 
 function App() {
-  const [car, setCar] = useState([]);
-  const [name, setName] = useState("");
-  const [search, setSearch] = useState("");
+    const [car, setCar] = useState([]);
+    const [name, setName] = useState("");
+    const [search, setSearch] = useState("");
 
-  //Add car
-  const addCar = () => {
-    if(name.trim() === ""){
-        return;
-    }
-    setCar([...car, name.trim()]);
-    setName("");
-  };
+    // Add car
+    const addCar = () => {
+        if (name.trim() === "") {
+            return;
+        }
 
-  //Delete car
-  const deleteCar = (index) => {
-    const updatedCars = car.filter(
-        (-, i) => i ! == index
+        setCar([...car, name.trim()]);
+        setName("");
+    };
+
+    // Delete car
+    const deleteCar = (index) => {
+        const updatedCars = car.filter(
+            (_, i) => i !== index
+        );
+
+        setCar(updatedCars);
+    };
+
+    // Search car
+    const filteredCars = car.filter((carName) =>
+        carName.toLowerCase().includes(search.toLowerCase())
     );
 
-    setCar(updatedCars);
+    return (
+        <div>
+            <h1>Car Management</h1>
 
-  };
+            {/* Add car */}
+            <input
+                type="text"
+                placeholder="Enter car name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
 
-  // search car
-  const filteredCars = car.filter((car) => 
-    car.toLowerCase().includes(search.toLowerCase())
-);
+            <button onClick={addCar}>
+                Add Car
+            </button>
 
+            <br /><br />
 
-  return (
-    <div>
-      <h1>Car management</h1>
+            {/* Search car */}
+            <input
+                type="text"
+                placeholder="Search car"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
 
-      <input
-        type="text"
-        placeholder="Enter car name"
-        value={names}
-        onChange={(e) => setNames(e.target.value)}
-      />
-      <button onClick={addCar}>
-        Add car
-      </button>
-      <br></br>
+            <h2>Car List</h2>
 
-      <input
-        type="text"
-        placeholder="search car "
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+            {filteredCars.length === 0 ? (
+                <p>No cars found</p>
+            ) : (
+                filteredCars.map((carName) => {
+                    const originalIndex = car.indexOf(carName);
 
-      <h2>car list</h2>
+                    return (
+                        <div key={originalIndex}>
+                            <span>{carName}</span>
 
-      {filteredCars.length === 0 ? (
-        <p>No cars found</p>
-      ): (
-        filteredCars.map((car, index) => (
-            <div key={index}>
-                <span>{car}</span>
-                <button
-                onClick={() => deletedCar(
-                    car.indexOf(car)
-                )}
-                >
-                    Delete
-                </button>
-        ))
-      )}
-    </div>
-  );
+                            <button
+                                onClick={() => deleteCar(originalIndex)}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    );
+                })
+            )}
+        </div>
+    );
 }
 
 export default App;
