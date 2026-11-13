@@ -1,23 +1,18 @@
 import { useState } from "react";
 
 function App() {
-    const [pet, setPet] = useState([]);
-    const [name, setName] = useState("");
-    const [search,setSearch] = useState("");
+    const [count, setCount] = useState(0);
 
-    const addPet = () => {
-        if (name.trim() === ""){
-            return;
-        }
-        setPet([...pet, name.trim()]);
-        setName("");
+    const increment = () => {
+        setCount((prevCount) => prevCount + 1);
+    };
 
-     };
-
-     const deletePet = (index) => {
-        const updatePet = pet.filter(
-            (_,i) => i !==index
-        );
-        setPet(updatedPets);
-     };
+    return (
+        <div>
+            <h2>Count: {count}</h2>
+            <button onClick={increment}>Increment</button>
+        </div>
+    );
 }
+
+export default App;
