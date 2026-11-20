@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 function App() {
     const [car, setCar] = useState([]);
@@ -30,7 +31,7 @@ function App() {
     );
 
     return (
-        <div>
+        <div className="app-shell">
             <h1>Car Management</h1>
 
             {/* Add car */}
@@ -64,7 +65,7 @@ function App() {
                     const originalIndex = car.indexOf(carName);
 
                     return (
-                        <div key={originalIndex}>
+                        <div className="car-row" key={originalIndex}>
                             <span>{carName}</span>
 
                             <button
