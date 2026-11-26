@@ -18,9 +18,11 @@ function Display() {
                 Save
             </button>
 
-            <p>your  entered name: {name}</p>
+            {show && <p>show: {name}</p>}
 
         </div>
 
     )
 }
+
+export default Display
