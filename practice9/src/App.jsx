@@ -2,13 +2,13 @@ import { useState } from "react";
 import "./App.css";
 
 export default function App() {
-  const [color, setColor] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState("#f5f5f5");
 
   return (
-    <div className="color-class" style={{ color }}>
-      <button onClick={() => setColor("red")}>red</button>
-      <button onClick={() => setColor("blue")}>blue</button>
-      <button onClick={() => setColor("green")}>green</button>
+    <div className="color-class" style={{ backgroundColor }}>
+      <button className="button" onClick={() => setBackgroundColor("red")}>red</button>
+      <button className="button" onClick={() => setBackgroundColor("blue")}>blue</button>
+      <button className="button" onClick={() => setBackgroundColor("green")}>green</button>
     </div>
   );
 }

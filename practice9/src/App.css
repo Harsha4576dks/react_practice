@@ -1,0 +1,51 @@
+.color-class {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.25s ease;
+}
+
+.button {
+  min-width: 110px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button:nth-child(1) {
+  background: #dc2626;
+}
+
+.button:nth-child(2) {
+  background: #2563eb;
+}
+
+.button:nth-child(3) {
+  background: #16a34a;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.button:active {
+  transform: translateY(0);
+  opacity: 0.85;
+}
+
+.button:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+}
